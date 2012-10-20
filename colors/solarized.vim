@@ -134,27 +134,7 @@
 " Allow or disallow certain features based on current terminal emulator or 
 " environment.
 
-" Terminals that support italics
-let s:terms_italic=[
-            \"rxvt",
-            \"gnome-terminal"
-            \]
-" For reference only, terminals are known to be incomptible.
-" Terminals that are in neither list need to be tested.
-let s:terms_noitalic=[
-            \"iTerm.app",
-            \"Apple_Terminal"
-            \]
-if has("gui_running")
-    let s:terminal_italic=1 " TODO: could refactor to not require this at all
-else
-    let s:terminal_italic=0 " terminals will be guilty until proven compatible
-    for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
-            let s:terminal_italic=1
-        endif
-    endfor
-endif
+let s:terminal_italic=1
 
 " }}}
 " Default option values"{{{
@@ -538,7 +518,7 @@ endif
 
 exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 
-exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
+exe "hi! Comment"        .s:fmt_stnd   .s:fg_base01 .s:bg_none
 "       *Comment         any comment
 
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
